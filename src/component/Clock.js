@@ -71,7 +71,7 @@ export default function Clock() {
               className="mt-32 border rounded-full pl-6  bg-white text-gray-600 font-semibold flex items-center tracking-widest"
               onClick={() => setDetails(!details)}
             >
-              MORE
+              {details ? "LESS" : "MORE"}
               <IoIosArrowDropdownCircle
                 size="45"
                 className="ml-2"
