@@ -1,7 +1,33 @@
 .pic {
-  background: rgb(100, 100, 100) url("./assets/mobile/bg-image-daytime.jpg");
+  background: rgb(68, 66, 66) url("./assets/mobile/bg-image-daytime.jpg");
   background-blend-mode: soft-light;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+}
+
+@media screen and (min-width: 750px) {
+  .pic {
+    background: rgb(68, 66, 66) url("./assets/tablet/bg-image-daytime.jpg");
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .pic {
+    background: rgb(68, 66, 66) url("./assets/desktop/bg-image-daytime.jpg");
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+}
+
+.bg-timedata {
+  color: #303030;
+  background-color: #979797;
+  padding: 2em;
 }

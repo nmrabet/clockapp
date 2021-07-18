@@ -6,6 +6,7 @@ export default function Clock() {
   const [timeData, setTimeData] = useState();
   const [quoteData, setQuoteData] = useState();
   const [location, setLocation] = useState();
+  const [details, setDetails] = useState(false);
 
   const baseUrl = "http://worldtimeapi.org/api/ip";
   useEffect(() => {
@@ -28,13 +29,15 @@ export default function Clock() {
       .then((locationData) => setLocation(locationData));
   }, []);
 
+  console.log(timeData);
+
   return (
     <div className="text-white">
       <div className="pt-10" style={{ fontFamily: "inter" }}>
         {quoteData && (
-          <div className="flex justify-around mx-6">
+          <div className="flex justify-around mx-8">
             <blockquote className="flex flex-col">
-              <q className="w-11/12">{quoteData.content}</q>
+              <q>{quoteData.content}</q>
               <cite className="mt-4 font-bold">{quoteData.author}</cite>
             </blockquote>
             <Refresh
@@ -50,20 +53,23 @@ export default function Clock() {
             <h1 className="text-8xl font-bold ">
               {timeData.datetime.substring(11, 16)}
             </h1>
-            <span className="ml-3">EST</span>
+            <span className="ml-3">BST</span>
           </div>
           <div>
             {location && (
               <div>
-                <p className="mt-4 font-semibold uppercase">
+                <p className="mt-4 font-semibold uppercase tracking-widest">
                   in {location.country_name}, {location.country_code}
                 </p>
               </div>
             )}
           </div>
           <div>
-            <button className="mt-32 border rounded-full pl-6  bg-white text-gray-600 font-semibold flex items-center">
-              MORE{" "}
+            <button
+              className="mt-32 border rounded-full pl-6  bg-white text-gray-600 font-semibold flex items-center tracking-widest"
+              onClick={() => setDetails(!details)}
+            >
+              MORE
               <IoIosArrowDropdownCircle
                 size="45"
                 className="ml-2"
@@ -73,6 +79,28 @@ export default function Clock() {
           </div>
         </div>
       )}
+      <div>
+        {details && (
+          <div className="bg-timedata space-y-4">
+            <div className="flex justify-between items-center">
+              <h2>CURRENT TIMEZONE</h2>
+              <p className="text-2xl font-bold">{timeData.timezone}</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <h2>DAY OF THE YEAR</h2>
+              <p className="text-2xl font-bold">{timeData.day_of_year}</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <h2>DAY OF THE WEEK</h2>
+              <p className="text-2xl font-bold">{timeData.day_of_week}</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <h2>WEEK NUMBER</h2>
+              <p className="text-2xl font-bold">{timeData.week_number}</p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
