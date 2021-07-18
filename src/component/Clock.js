@@ -35,7 +35,7 @@ export default function Clock() {
     <div className="text-white">
       <div className="pt-10" style={{ fontFamily: "inter" }}>
         {quoteData && (
-          <div className="flex justify-around mx-8">
+          <div className="px-14 flex justify-between lg:px-32">
             <blockquote className="flex flex-col">
               <q>{quoteData.content}</q>
               <cite className="mt-4 font-bold">{quoteData.author}</cite>
@@ -48,21 +48,23 @@ export default function Clock() {
         )}
       </div>
       {timeData && (
-        <div className="pt-52 ml-10">
-          <div className="flex items-baseline">
-            <h1 className="text-8xl font-bold ">
-              {timeData.datetime.substring(11, 16)}
-            </h1>
-            <span className="ml-3">BST</span>
-          </div>
+        <div className="pt-52 px-14 md:pt-64 lg:flex justify-between items-baseline lg:pt-80 lg:px-32">
           <div>
-            {location && (
-              <div>
-                <p className="mt-4 font-semibold uppercase tracking-widest">
-                  in {location.country_name}, {location.country_code}
-                </p>
-              </div>
-            )}
+            <div className="flex items-baseline">
+              <h1 className="text-8xl font-bold lg:text-9xl">
+                {timeData.datetime.substring(11, 16)}
+              </h1>
+              <span className="ml-3">BST</span>
+            </div>
+            <div>
+              {location && (
+                <div>
+                  <p className="mt-4 font-semibold uppercase tracking-widest">
+                    in {location.country_name}, {location.country_code}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
           <div>
             <button
