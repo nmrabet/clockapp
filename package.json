@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && vercel build --output public",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
