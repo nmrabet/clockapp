@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { ReactComponent as Refresh } from "../assets/desktop/icon-refresh.svg";
 
 export default function Clock() {
   const [timeData, setTimeData] = useState();
@@ -29,16 +30,22 @@ export default function Clock() {
 
   return (
     <div className="text-white">
-      <div className="text-black pt-10 mx-8">
+      <div className="pt-10" style={{ fontFamily: "inter" }}>
         {quoteData && (
-          <blockquote className="flex flex-col">
-            <q className="text-black">{quoteData.content}</q>
-            <cite className="mt-4 font-bold">{quoteData.author}</cite>
-          </blockquote>
+          <div className="flex justify-around mx-6">
+            <blockquote className="flex flex-col">
+              <q className="w-11/12">{quoteData.content}</q>
+              <cite className="mt-4 font-bold">{quoteData.author}</cite>
+            </blockquote>
+            <Refresh
+              className="cursor-pointer"
+              onClick={() => window.location.reload(false)}
+            />
+          </div>
         )}
       </div>
       {timeData && (
-        <div className="pt-64 ml-10">
+        <div className="pt-52 ml-10">
           <div className="flex items-baseline">
             <h1 className="text-8xl font-bold ">
               {timeData.datetime.substring(11, 16)}

@@ -1,5 +1,6 @@
 .pic {
-  background-image: url("./assets/mobile/bg-image-daytime.jpg");
+  background: rgb(100, 100, 100) url("./assets/mobile/bg-image-daytime.jpg");
+  background-blend-mode: soft-light;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
