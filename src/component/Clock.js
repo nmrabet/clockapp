@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { IoIosArrowDropupCircle } from "react-icons/io";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 export default function Clock() {
   const [timeData, setTimeData] = useState();
   const [quoteData, setQuoteData] = useState();
+  const [location, setLocation] = useState();
 
   const baseUrl = "http://worldtimeapi.org/api/ip";
   useEffect(() => {
@@ -17,6 +18,13 @@ export default function Clock() {
     fetch(quoteApiUrl)
       .then((response) => response.json())
       .then((dataQuote) => setQuoteData(dataQuote));
+  }, []);
+
+  const locationApiUrl = "https://freegeoip.app/json/";
+  useEffect(() => {
+    fetch(locationApiUrl)
+      .then((response) => response.json())
+      .then((locationData) => setLocation(locationData));
   }, []);
 
   return (
@@ -38,10 +46,22 @@ export default function Clock() {
             <span className="ml-3">EST</span>
           </div>
           <div>
-            <p className="mt-4 font-semibold">IN TUNIS, AF</p>
+            {location && (
+              <div>
+                <p className="mt-4 font-semibold uppercase">
+                  in {location.country_name}, {location.country_code}
+                </p>
+              </div>
+            )}
+          </div>
+          <div>
             <button className="mt-32 border rounded-full pl-6  bg-white text-gray-600 font-semibold flex items-center">
               MORE{" "}
-              <IoIosArrowDropupCircle size="45" className="ml-2" color="#000" />
+              <IoIosArrowDropdownCircle
+                size="45"
+                className="ml-2"
+                color="#000"
+              />
             </button>
           </div>
         </div>
