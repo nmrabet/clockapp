@@ -83,22 +83,34 @@ export default function Clock() {
       )}
       <div>
         {details && (
-          <div className="bg-timedata space-y-4">
-            <div className="flex justify-between items-center">
-              <h2>CURRENT TIMEZONE</h2>
-              <p className="text-2xl font-bold">{timeData.timezone}</p>
+          <div className="bg-timedata lg:flex items-center justify-around">
+            <div>
+              <div className="flex justify-between lg:flex-col">
+                <h2>CURRENT TIMEZONE</h2>
+                <p className="text-2xl font-bold lg:text-6xl lg:pt-3">
+                  {timeData.timezone}
+                </p>
+              </div>
+              <div className="flex justify-between lg:flex-col lg:pt-6">
+                <h2>DAY OF THE YEAR</h2>
+                <p className="text-2xl font-bold lg:text-6xl lg:pt-3">
+                  {timeData.day_of_year}
+                </p>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <h2>DAY OF THE YEAR</h2>
-              <p className="text-2xl font-bold">{timeData.day_of_year}</p>
-            </div>
-            <div className="flex justify-between items-center">
-              <h2>DAY OF THE WEEK</h2>
-              <p className="text-2xl font-bold">{timeData.day_of_week}</p>
-            </div>
-            <div className="flex justify-between items-center">
-              <h2>WEEK NUMBER</h2>
-              <p className="text-2xl font-bold">{timeData.week_number}</p>
+            <div>
+              <div className="flex justify-between lg:flex-col">
+                <h2>DAY OF THE WEEK</h2>
+                <p className="text-2xl font-bold lg:text-6xl lg:pt-3">
+                  {timeData.day_of_week}
+                </p>
+              </div>
+              <div className="flex justify-between lg:flex-col lg:pt-6">
+                <h2>WEEK NUMBER</h2>
+                <p className="text-2xl font-bold lg:text-6xl lg:pt-3">
+                  {timeData.week_number}
+                </p>
+              </div>
             </div>
           </div>
         )}
