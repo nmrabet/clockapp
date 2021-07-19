@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { ReactComponent as Refresh } from "../assets/desktop/icon-refresh.svg";
+import Moon from "../assets/desktop/icon-moon.svg";
+import Sun from "../assets/desktop/icon-sun.svg";
 
 export default function Clock() {
   const [timeData, setTimeData] = useState();
@@ -29,7 +31,16 @@ export default function Clock() {
       .then((locationData) => setLocation(locationData));
   }, []);
 
-  console.log(timeData);
+  const greeting = () => {
+    let date = timeData.datetime.substring(11, 13);
+    if (date > 5 && date < 12) {
+      return `Good Morning`;
+    } else if (date > 12 && date < 18) {
+      return `Good afternoon`;
+    } else if (date > 18 && date < 5) {
+      return `Good Evening`;
+    }
+  };
 
   return (
     <div className="text-white">
@@ -48,18 +59,19 @@ export default function Clock() {
         )}
       </div>
       {timeData && (
-        <div className="pt-52 px-14 md:pt-64 lg:flex justify-between items-baseline lg:pt-80 lg:px-32">
+        <div className="pt-52 px-14 md:pt-64 lg:flex justify-between items-center lg:pt-80 lg:px-32">
           <div>
-            <div className="flex items-baseline">
-              <h1 className="text-8xl font-bold lg:text-9xl">
+            <div className="">
+              <div className="text-8xl font-bold lg:text-9xl">
+                <p className="text-lg pb-4">{greeting()}</p>
                 {timeData.datetime.substring(11, 16)}
-              </h1>
-              <span className="ml-3">BST</span>
+                <span className="ml-3 text-lg">BST</span>
+              </div>
             </div>
             <div>
               {location && (
                 <div>
-                  <p className="mt-4 font-semibold uppercase tracking-widest">
+                  <p className="pt-4 font-semibold uppercase tracking-widest">
                     in {location.country_name}, {location.country_code}
                   </p>
                 </div>
@@ -68,7 +80,7 @@ export default function Clock() {
           </div>
           <div>
             <button
-              className="mt-32 border rounded-full pl-6  bg-white text-gray-600 font-semibold flex items-center tracking-widest"
+              className="mt-10 border rounded-full pl-6 bg-white text-gray-600 font-semibold flex items-center tracking-widest"
               onClick={() => setDetails(!details)}
             >
               {details ? "LESS" : "MORE"}
